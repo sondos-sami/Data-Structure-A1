@@ -35,7 +35,7 @@ public:
         length++;
     }
     t Dequeue(){
-       if(IsEmpty()){cout<<"can't delete";}
+       if(IsEmpty()){cout<<"Cannot dequeue from an empty queue.";}
        if(length==1){
            t last =front->item;
           delete front;
@@ -57,7 +57,7 @@ public:
         return front->item;}
     }
     void clear(){
-        if (IsEmpty()) { cout<<"can't delete";}
+        if (IsEmpty()) { cout<<"Queue is already empty.";}
         else{
         node*current = new node;
         while(front!=NULL){
@@ -69,7 +69,7 @@ public:
         length=0;
     }}
     void print(){
-        if (IsEmpty()) { cout<<"can't print";}
+        if (IsEmpty()) { cout<<"Queue is empty,Nothing to display";}
         node*current=front;
         while(front!=NULL){
             cout<<current->item<<" ";
