@@ -87,7 +87,7 @@ int main(){
     vector<student>Student;
     readStudentsFromFile("students.txt", Student);
    SelectionSort(Student, compareByName);
-    cout << "After Bubble Sort by Name:" << endl;
+    cout << "After Sorting:" << endl;
     print(Student);
 }
 
