@@ -28,3 +28,24 @@ void SelectionSort(vector<T>& data, Comparator comp) {
         }
     }
 }
+
+
+// Function Bubble Sort
+template <typename T, typename Comparator>
+void BubbleSort(vector<T>& data, Comparator comp) {
+    bool f;
+    int n = data.size();
+    for (int i = 0; i < n - 1; ++i) {
+        f = false;
+        for (int j = n - 1; j > i; j--) {
+            if (comp(data[j], data[j - 1])) //based on the comparator byName or byGPA and < or >
+            {
+                swap(data[j], data[j - 1]);
+                f = true;
+            }
+        }
+        if (!f)//to achieve best case o(n)
+            return;
+    }
+}
+
