@@ -1,8 +1,4 @@
-   #include <iostream>
-#include <vector>
-#include <fstream>
-#include <string>
-#include <algorithm>
+#include <bits/stdc++.h>
 #include "sorting.h"
 
 using namespace std;
@@ -50,32 +46,26 @@ bool compareByName(const student& a, const student& b) {
 bool compareByGPA(const student& a, const student& b) {
     return a.gpa < b.gpa;
 }
-void readStudentsFromFile(const std::string& filename, std::vector<student>& students) {
-    std::ifstream file(filename);
+void readStudentsFromFile( vector<student>& students) {
+    ifstream file("students.txt");
+    string Name, Id;
+    double Gpa;
+    int NumStud;
     if (!file.is_open()) {
-        std::cerr << "Could not open the file - '" << filename << "'" << std::endl;
-        return;
+        cerr << "Failed to open file." << endl;
     }
-
-    int numStudents;
-    file >> numStudents;
-    students.reserve(numStudents); // Reserve space for efficiency
-
-    std::string name;
-    string id;
-    double gpa;
-
-    // Skip the end of line character after reading numStudents
-    file.ignore( );
-
-    for (int i = 0; i < numStudents; ++i) {
-        std::getline(file, name);
-        file >> id >> gpa;
-        // Skip the end of line character after reading gpa
+    if (!(file >> NumStud)) {
+        cerr << "Failed to read the number of students." << endl;
+    }
+    file.ignore();
+    while (NumStud > 0) {
+        getline(file, Name);
+        getline(file, Id);
+        file >> Gpa;
         file.ignore();
-        students.emplace_back(name, id, gpa);
+        NumStud--;
+       students.emplace_back(Name, Id, Gpa);
     }
-
     file.close();
 }
 void print(const vector<student>& students) {
@@ -85,8 +75,8 @@ void print(const vector<student>& students) {
 }
 int main(){
     vector<student>Student;
-    readStudentsFromFile("students.txt", Student);
-   SelectionSort(Student, compareByName);
+    readStudentsFromFile( Student);
+    MergeSort(Student, compareByName);
     cout << "After Sorting:" << endl;
     print(Student);
 }
