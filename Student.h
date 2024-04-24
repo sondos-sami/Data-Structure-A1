@@ -43,6 +43,7 @@ public:
     void mergeSort(vector<Student>& students, int left, int right);
     void selectionSort(vector<Student>& students);
     void quickSort(vector<Student>& students, int low, int high);
+    void BubbleSort(vector<Student>& students);
 
 private:
     // Utility functions for sorting algorithms
