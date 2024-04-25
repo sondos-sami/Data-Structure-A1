@@ -334,13 +334,15 @@ void doubleLinkedList<type>::print() const{
     if(first==NULL){
         cout<<"can't print an empty list"<<endl;
     }
-    node<type> *current;
-    current=first;
-    while(current!=NULL){
-        cout<<current->info<<" ";
-        current=current->next;
+    else{
+        node<type> *current;
+        current=first;
+        while(current!=NULL){
+            cout<<current->info<<" ";
+            current=current->next;
+        }
+        cout<<endl;
     }
-    cout<<endl;
 }
 template <class type>
 bool doubleLinkedList<type>::isEmpty(){
