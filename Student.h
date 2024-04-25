@@ -44,6 +44,7 @@ public:
     void selectionSort(vector<Student>& students);
     void quickSort(vector<Student>& students, int low, int high);
     void BubbleSort(vector<Student>& students);
+     void ShellSort(vector<Student>& students);
 
 private:
     // Utility functions for sorting algorithms
