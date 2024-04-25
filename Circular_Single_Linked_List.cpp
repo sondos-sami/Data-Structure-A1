@@ -1,9 +1,10 @@
 #include <iostream>
 using namespace std;
+template<typename T>
 class C_Single_linked_list {
 	struct Node
 	{
-		int item;
+		T item;
 		Node* next;
 	};
 	Node* Head;
@@ -18,7 +19,7 @@ public:
 	bool isEmpty() {
 		return length == 0;
 	}
-	void insertAtHead(int element)
+	void insertAtHead(T element)
 	{
 		Node* newNode = new Node;
 		newNode->item = element;
@@ -34,7 +35,7 @@ public:
 		}
 		length++;
 	}
-	void insertAtTail(int element)
+	void insertAtTail(T element)
 	{
 		Node* newNode = new Node;
 		newNode->item = element;
@@ -52,7 +53,7 @@ public:
 		length++;
 
 	}
-	void insertAt(int pos, int element)
+	void insertAt(int pos, T element)
 	{
 		if (pos<0 || pos>length)
 		{
@@ -172,7 +173,7 @@ public:
 		}
 
 	}
-	int retrieveAt(int pos)
+	T retrieveAt(int pos)
 	{
 		Node* Curr = Head;
 		if (pos < 0 || pos >= length)
@@ -189,7 +190,7 @@ public:
 			return Curr->item;
 		}
 	}
-	void replaceAt(int element, int pos)
+	void replaceAt(T element, int pos)
 	{
 		if (pos < 0 || pos >= length)
 		{
@@ -205,7 +206,7 @@ public:
 			Curr->item = element;
 		}
 	}
-	bool isItemAtEqual(int element, int pos)
+	bool isItemAtEqual(T element, int pos)
 	{
 		Node* Curr = Head;
 		for (int i = 0;i < pos;i++)
@@ -215,7 +216,7 @@ public:
 		return Curr->item == element;
 
 	}
-	bool isExist(int element)
+	bool isExist(T element)
 	{
 		Node* Curr = Head;
 		//i will use do while as it circular and i want it exit when the curr point to head back
@@ -326,7 +327,7 @@ public:
 };
 int main()
 {
-	C_Single_linked_list l;
+	C_Single_linked_list<int> l;
 	l.insertAtHead(10);
 	l.insertAtHead(90);
 	l.insertAtHead(14);
