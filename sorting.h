@@ -70,5 +70,44 @@ void BubbleSort(vector<T>& data, Comparator comp, int& comparisons) {
             return;
     }
 }
+template <typename T, typename Comparator>
+void QuickSort(vector<T>& data, Comparator comp) {
+    int n = data.size();
+    if (n <= 1) {
+        return;
+    }
+    
+    T pivot = data[n/2];
+    
+    vector<T> left;
+    vector<T> right;
+    
+    for (int i = 0; i < n; i++) {
+        if (i == n/2) {
+            continue;
+        }
+        
+        if (comp(data[i], pivot)) {
+            left.push_back(data[i]);
+        } else {
+            right.push_back(data[i]);
+        }
+    }
+    
+    QuickSort(left, comp);
+    QuickSort(right, comp);
+    
+    int index = 0;
+    
+    for (const T& val : left) {
+        data[index++] = val;
+    }
+    
+    data[index++] = pivot;
+    
+    for (const T& val : right) {
+        data[index++] = val;
+    }
+}
 
 #endif //DATASTRUCTURE_SORTING_H
