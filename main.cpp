@@ -126,16 +126,15 @@ int main(){
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start).count();
     print(Student, "SortedByGPA.txt", "SelectionSort", comparisons, duration);
-
+    
+   start = high_resolution_clock::now();
+    QuickSort(Student, compareByGPA, comparisons);
+     stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start).count();
+print(Student, "SortedByGPA.txt", "QuickSort", comparisons, duration);
 
 //    MergeSort(Student, compareByGPA);
 //    print(Student, "SortedByGPA.txt", "MergeSort");
-//   QuickSort(Student, compareByGPA);
-//    print(Student, "SortedByGPA.txt", "QuickSort");
-//    ShellSort(Student, compareByGPA);
-//    print(Student, "SortedByGPA.txt", "ShellSort");
-//    BubbleSort(Student, compareByGPA);
-//    print(Student, "SortedByGPA.txt", "BubbleSort");
 
 
 
@@ -144,16 +143,25 @@ int main(){
 
     //sorting by Name
 
-    InsertionSort(Student, compareByName);
-    print(Student, "SortedByName.txt", "InsertionSort");
-    SelectionSort(Student, compareByName);
-    print(Student, "SortedByName.txt", "SelectionSort");
-    //    MergeSort(Student, compareByName);
-//    print(Student,"SortedByName.txt", "MergeSort");
-//   QuickSort(Student, compareByName);
-//    print(Student,"SortedByName.txt", "QuickSort");
-//    ShellSort(Student,compareByName);
-//    print(Student, "SortedByName.txt", "ShellSort");
+    auto start = high_resolution_clock::now();
+    InsertionSort(Student, compareByName, comparisons);
+    auto stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start).count();
+    print(Student, "SortedByName.txt", "InsertionSort", comparisons, duration);
+
+    start = high_resolution_clock::now();
+    SelectionSort(Student, compareByName, comparisons);
+    stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start).count();
+    print(Student, "SortedByName.txt", "SelectionSort", comparisons, duration);
+    
+   start = high_resolution_clock::now();
+    QuickSort(Student,compareByName, comparisons);
+     stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start).count();
+print(Student, "SortedByName.txt"", "QuickSort", comparisons, duration);
+
+    
 //    BubbleSort(Student, compareByName);
 //    print(Student, "SortedByName.txt", "BubbleSort");
 
