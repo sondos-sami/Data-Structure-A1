@@ -341,7 +341,7 @@ print(Student, "SortedByGPA.txt", "QuickSort", comparisons, duration);
     BubbleSort(Student, compareByName , comparisons);
     stop = high_resolution_clock::now();
     duration = duration_cast<nanoseconds>(stop - start).count();
-    print(Student,"SortedByName .txt", "Bubblesort", comparisons, duration);
+    print(Student,"SortedByName.txt", "Bubblesort", comparisons, duration);
 
 //shellsort
     start = high_resolution_clock::now();
