@@ -2,6 +2,7 @@
 
 #include "sorting.h"
 using namespace std;
+using namespace chrono;
 class student {
 public:
     string name;
@@ -82,7 +83,8 @@ void readStudentsFromFile(vector<student>& students) {
 
     file.close();
 }
-void print( vector<student>  &students, string  filename,  string  algorithmName) {
+
+void print(vector<student>& students, string filename, string algorithmName, int comparisons, long long duration) {
     ofstream outFile(filename, ios::app);
 
     if (!outFile.is_open()) {
@@ -90,14 +92,9 @@ void print( vector<student>  &students, string  filename,  string  algorithmName
         return;
     }
 
-
     outFile << "Algorithm: " << algorithmName << endl;
-
-    // Write number of comparisons
-    // outFile << "Number of comparisons: "<<function <<  endl;
-
-    // Write running time
-    // outFile << "Running time: "<<function   << endl;
+    outFile << "Number of comparisons: " << comparisons << endl;
+    outFile << "Running time: " << duration << " microseconds" << endl;
 
     for (const auto& student : students) {
         outFile << student.name << endl;
@@ -108,17 +105,29 @@ void print( vector<student>  &students, string  filename,  string  algorithmName
     outFile.close();
 }
 
+
 int main(){
+      int comparisons;
+    long long duration;
     vector<student> Student;
     readStudentsFromFile(Student);
     remove("SortedByGPA.txt");//to clear file
     remove("SortedByName.txt");
      //sorting by GPA
 
-    InsertionSort(Student, compareByGPA);
-    print(Student, "SortedByGPA.txt", "InsertionSort");
-    SelectionSort(Student, compareByGPA);
-    print(Student, "SortedByGPA.txt", "SelectionSort");
+   auto start = high_resolution_clock::now();
+    InsertionSort(Student, compareByGPA, comparisons);
+    auto stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start).count();
+    print(Student, "SortedByGPA.txt", "InsertionSort", comparisons, duration);
+
+    start = high_resolution_clock::now();
+    SelectionSort(Student, compareByGPA, comparisons);
+    stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start).count();
+    print(Student, "SortedByGPA.txt", "SelectionSort", comparisons, duration);
+
+
 //    MergeSort(Student, compareByGPA);
 //    print(Student, "SortedByGPA.txt", "MergeSort");
 //   QuickSort(Student, compareByGPA);
