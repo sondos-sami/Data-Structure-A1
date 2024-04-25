@@ -331,6 +331,9 @@ void doubleLinkedList<type>::clear(){
 }
 template <class type>
 void doubleLinkedList<type>::print() const{
+    if(first==NULL){
+        cout<<"can't print an empty list"<<endl;
+    }
     node<type> *current;
     current=first;
     while(current!=NULL){
