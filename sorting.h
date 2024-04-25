@@ -29,6 +29,35 @@ void SelectionSort(vector<T>& data, Comparator comp) {
         }
     }
 }
- 
+//Shell Sort
+template <typename T, typename Comparator>
+void ShellSort(vector<T>& data, Comparator comp) {
+    int n = data.size();
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+        for (int i = gap; i < n; i++) {
+            for (int j = i; j >= gap && comp(data[j], data[j - gap]); j -= gap) {
+                swap(data[j], data[j - gap]);
+            }
+        }
+    }
+}
+//Bubble Sort
+template <typename T, typename Comparator>
+void BubbleSort(vector<T>& data, Comparator comp) {
+    bool f;
+    int n = data.size();
+    for (int i = 0; i < n - 1; ++i) {
+        f = false;
+        for (int j = n-1; j >i; j--) {
+            if (comp(data[j],data[j-1]))//based on the comparator < or > 
+            {
+                swap(data[j],data[j-1]);
+                f = true;
+            }
+        }
+        if (!f)//to achieve best case o(n)
+         return;
+    }
+}
 
 #endif //DATASTRUCTURE_SORTING_H
