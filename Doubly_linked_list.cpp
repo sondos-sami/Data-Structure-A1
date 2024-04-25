@@ -382,7 +382,7 @@ int main()
     dl.print();
 
     cout<<"if exist 1, not exist 0: "<<dl.isExist(33)<<endl;
-    cout<<"if Item At given index equal the item given 1, not exist 0: "<<dl.isItemAtEqual(5,3)<<endl;
+    cout<<"if Item At given index equal the item given 1, not equal 0: "<<dl.isItemAtEqual(5,3)<<endl;
     cout<<"if empty 1, not empty 0: "<<dl.isEmpty()<<endl;
     cout<<"The double linked list size= "<<dl.doubleLinkedListSize()<<endl;
     dl.clear();
