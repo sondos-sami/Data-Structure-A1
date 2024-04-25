@@ -398,7 +398,7 @@ int main()
     dl.print();
     dl.removeAt(1);
     dl.print();
-    cout<<dl.retrieveAt(1)<<endl;
+    cout<<"The given index contains the element= "<<dl.retrieveAt(1)<<endl;
     dl.replaceAt(888,4);
     dl.print();
     dl.removeAtTail();
