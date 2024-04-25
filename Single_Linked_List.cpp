@@ -1,9 +1,10 @@
 #include <iostream>
 using namespace std;
+template<typename T>
 class Single_linked_list {
 	struct Node
 	{
-		int item;
+		T item;
 		Node* next;
 	};
 	Node* Head;
@@ -18,7 +19,7 @@ public:
 	bool isEmpty() {
 		return length == 0;
 	}
-	void insertAtHead(int element)
+	void insertAtHead(T element)
 	{
 		Node* newNode = new Node;
 		newNode->item = element;
@@ -33,7 +34,7 @@ public:
 		}
 		length++;
 	}
-	void insertAtTail(int element)
+	void insertAtTail(T element)
 	{
 		Node* newNode = new Node;
 		newNode->item = element;
@@ -51,7 +52,7 @@ public:
 		length++;
 
 	}
-	void insertAt(int pos, int element)
+	void insertAt(int pos, T element)
 	{
 		if (pos<0 || pos>length)
 		{
@@ -168,13 +169,14 @@ public:
 		}
 
 	}
-	int retrieveAt(int pos)
+	T retrieveAt(int pos)
 	{
 		Node* Curr = Head;
 		if (pos < 0 || pos >= length)
 		{
 			cout << "Out of range!" << endl;
 			return -1;
+			
 		}
 		else
 		{
@@ -190,7 +192,7 @@ public:
 			}
 		}
 	}
-	void replaceAt(int element, int pos)
+	void replaceAt(T element, int pos)
 	{
 		if (pos < 0 || pos >= length)
 		{
@@ -212,7 +214,7 @@ public:
 			}
 		}
 	}
-	bool isItemAtEqual(int element, int pos)
+	bool isItemAtEqual(T element, int pos)
 	{
 		Node* Curr = Head;
 		int indx = 0;
@@ -230,7 +232,7 @@ public:
 		return false;
 
 	}
-	bool isExist(int element)
+	bool isExist(T element)
 	{
 		Node* Curr = Head;
 		while (Curr != NULL)
@@ -359,15 +361,16 @@ public:
 };
 int main()
 {
-	Single_linked_list l;
+	Single_linked_list<int> l;
 	l.insertAtHead(10);
 	l.insertAtHead(90);
 	l.insertAtHead(14);
 	l.insertAtHead(33);
 	/****************************************/
 	//cout << l.retrieveAt(0) << endl;
-	//cout << l.retrieveAt(2) << endl;
-	//cout << l.retrieveAt(3)<<endl;
+	//cout << l.retrieveAt(1) << endl;
+	//cout << l.retrieveAt(2)<<endl;
+	//cout << l.retrieveAt(-1) << endl;
 	/********************************************************/
 	//l.replaceAt(7, 0);
 	//l.replaceAt(999, 2);
@@ -390,5 +393,5 @@ int main()
 	//cout << endl;
 	//cout << l.linkedListSize() << endl;
 	//l.print();
-	
+
 }
