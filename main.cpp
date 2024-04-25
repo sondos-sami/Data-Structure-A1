@@ -95,7 +95,7 @@ void print(vector<student>& students, string filename, string algorithmName, int
 
     outFile << "Algorithm: " << algorithmName << endl;
     outFile << "Number of comparisons: " << comparisons << endl;
-    outFile << "Running time: " << duration << " microseconds" << endl;
+    outFile << "Running time: " << duration << " nanoseconds" << endl;
 
     for (const auto& student : students) {
         outFile << student.name << endl;
@@ -261,11 +261,6 @@ void mergesort(vector<T>& data, int start, int end, Comparator comp, int& compar
 }
 
 
-
-
-
-
-
 int main(){
       int comparisons,n;
     long long duration;
@@ -278,38 +273,38 @@ int main(){
    auto start = high_resolution_clock::now();
     InsertionSort(Student, compareByGPA, comparisons);
     auto stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByGPA.txt", "InsertionSort", comparisons, duration);
 //selection
     start = high_resolution_clock::now();
     SelectionSort(Student, compareByGPA, comparisons);
     stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByGPA.txt", "SelectionSort", comparisons, duration);
 //quicksort
    start = high_resolution_clock::now();
     QuickSort(Student, compareByGPA, comparisons);
      stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
 print(Student, "SortedByGPA.txt", "QuickSort", comparisons, duration);
     //mergesort
     start = high_resolution_clock::now();
     mergesort(Student,0,n-1, compareByGPA , comparisons);
     stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByGPA.txt", "Mergesort", comparisons, duration);
 
 //Bubblesort
     start = high_resolution_clock::now();
     BubbleSort(Student,compareByGPA , comparisons);
     stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByGPA.txt", "Bubblesort", comparisons, duration);
 //shell
     start = high_resolution_clock::now();
     ShellSort(Student, compareByGPA , comparisons);
     stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByGPA.txt", "ShellSort", comparisons, duration);
 
 
@@ -321,38 +316,38 @@ print(Student, "SortedByGPA.txt", "QuickSort", comparisons, duration);
     start = high_resolution_clock::now();
     InsertionSort(Student, compareByName, comparisons);
      stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByName.txt", "InsertionSort", comparisons, duration);
 //selection
     start = high_resolution_clock::now();
     SelectionSort(Student, compareByName, comparisons);
     stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByName.txt", "SelectionSort", comparisons, duration);
 //quicksort
     start = high_resolution_clock::now();
     QuickSort(Student, compareByName, comparisons);
     stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByName.txt", "QuickSort", comparisons, duration);
     //mergesort
     start = high_resolution_clock::now();
     mergesort(Student,0,n-1,compareByName , comparisons);
     stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByName.txt", "Mergesort", comparisons, duration);
     //Bubblesort
     start = high_resolution_clock::now();
     BubbleSort(Student, compareByName , comparisons);
     stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student,"SortedByName .txt", "Bubblesort", comparisons, duration);
 
 //shellsort
     start = high_resolution_clock::now();
     ShellSort(Student, compareByName , comparisons);
     stop = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(stop - start).count();
+    duration = duration_cast<nanoseconds>(stop - start).count();
     print(Student, "SortedByName.txt", "ShellSort", comparisons, duration);
 
 
