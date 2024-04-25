@@ -19,7 +19,7 @@ public:
      last=NULL;
      count=0;
     }
-    void insertAtHead(const type& insertItem);
+    void insertAtHead(const type& insertItem);//2 cases:1)list is empty 2)list isn't empty
     void insertAtTail(const type& insertItem);
     void insertAt(const type& insertItem, int index);
     void removeAtHead();
@@ -320,6 +320,10 @@ void doubleLinkedList<type>:: swap(int firstItemIdx, int secondItemIdx){
 }
 template <class type>
 void doubleLinkedList<type>::clear(){
+    if(first==NULL){
+        cout<<"the list is already empty"<<endl;
+        return;
+    }
     node<type> *current;
     while(first!=NULL){//if list not empty delete all nodes
         current=first;
@@ -356,6 +360,7 @@ int doubleLinkedList<type>::doubleLinkedListSize() const{
 int main()
 {
     doubleLinkedList<int> dl;
+    dl.clear();
     dl.insertAtHead(1);
     dl.insertAtHead(2);
     dl.insertAtHead(3);
@@ -382,10 +387,11 @@ int main()
     dl.print();
 
     cout<<"if exist 1, not exist 0: "<<dl.isExist(33)<<endl;
-    cout<<"if Item At given index equal the item given 1, not equal 0: "<<dl.isItemAtEqual(5,3)<<endl;
+    cout<<"if Item At given index equal the item given 1, not exist 0: "<<dl.isItemAtEqual(5,3)<<endl;
     cout<<"if empty 1, not empty 0: "<<dl.isEmpty()<<endl;
     cout<<"The double linked list size= "<<dl.doubleLinkedListSize()<<endl;
     dl.clear();
     dl.print();
     return 0;
 }
+
