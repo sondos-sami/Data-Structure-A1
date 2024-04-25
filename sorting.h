@@ -71,7 +71,7 @@ void BubbleSort(vector<T>& data, Comparator comp, int& comparisons) {
     }
 }
 template <typename T, typename Comparator>
-void QuickSort(vector<T>& data, Comparator comp) {
+void QuickSort(vector<T>& data, Comparator comp, int& comparisons) {
     int n = data.size();
     if (n <= 1) {
         return;
@@ -87,6 +87,8 @@ void QuickSort(vector<T>& data, Comparator comp) {
             continue;
         }
         
+        comparisons++;  // Increment comparison counter
+        
         if (comp(data[i], pivot)) {
             left.push_back(data[i]);
         } else {
@@ -94,8 +96,8 @@ void QuickSort(vector<T>& data, Comparator comp) {
         }
     }
     
-    QuickSort(left, comp);
-    QuickSort(right, comp);
+    QuickSort(left, comp, comparisons);
+    QuickSort(right, comp, comparisons);
     
     int index = 0;
     
@@ -109,5 +111,7 @@ void QuickSort(vector<T>& data, Comparator comp) {
         data[index++] = val;
     }
 }
+
+
 
 #endif //DATASTRUCTURE_SORTING_H
