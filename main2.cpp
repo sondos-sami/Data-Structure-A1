@@ -143,15 +143,14 @@ void ShellSort(vector<T>& data, Comparator comp, int& comparisons) {
         for (int i = gap; i < n; i++) {
             T temp = data[i];
             int j;
+            comparisons++;
             for (j = i; j >= gap && comp(temp, data[j - gap]); j -= gap) {
                 data[j] = data[j - gap];
             }
-            comparisons++;
             data[j] = temp;
         }
     }
 }
-
 template <typename T, typename Comparator>
 void BubbleSort(vector<T>& data, Comparator comp, int& comparisons) {
     comparisons = 0;
