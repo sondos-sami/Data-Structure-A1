@@ -281,10 +281,12 @@ void countSort(vector<T>& data, Comparator comp,int& comparisons){
         finalvec[countvec[static_cast<int>(temp[i]-minn)] - 1]=temp[i];
         countvec[static_cast<int>(temp[i]-minn)]--;
     }
+    comparisons+=n;
     findStudentByGPA(data, finalvec, "SortedByGPA.txt",comparisons);
 
 }
-void findStudentByGPA(vector<student>& data, vector<float>& finalvec, const string& filename , int& comparisons){
+template <typename T>
+void findStudentByGPA(vector<T>& data, vector<float>& finalvec, const string& filename , int& comparisons){
     ofstream outFile(filename, std::ios::app);
     if (!outFile) {
         cerr << "Unable to open file: " << filename << endl;
@@ -399,3 +401,4 @@ print(Student, "SortedByGPA.txt", "QuickSort", comparisons, duration);
 
 
 }
+
