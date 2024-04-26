@@ -135,17 +135,19 @@ void SelectionSort(vector<T>& data, Comparator comp, int& comparisons) {
         }
     }
 }
-
 template <typename T, typename Comparator>
 void ShellSort(vector<T>& data, Comparator comp, int& comparisons) {
     comparisons = 0;
     int n = data.size();
     for (int gap = n / 2; gap > 0; gap /= 2) {
         for (int i = gap; i < n; i++) {
-            for (int j = i; j >= gap && comp(data[j], data[j - gap]); j -= gap) {
-                comparisons++;
-                swap(data[j], data[j - gap]);
+            T temp = data[i];
+            int j;
+            for (j = i; j >= gap && comp(temp, data[j - gap]); j -= gap) {
+                data[j] = data[j - gap];
             }
+            comparisons++;
+            data[j] = temp;
         }
     }
 }
@@ -401,4 +403,3 @@ print(Student, "SortedByGPA.txt", "QuickSort", comparisons, duration);
 
 
 }
-
