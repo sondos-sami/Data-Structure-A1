@@ -178,7 +178,7 @@ void Heap::insertNodeToHeap(vector<item>& items, int n,const item& newnode ,bool
     items[n-1]=newnode;
     heapSort(items,n,comp,ascending);
 }
-void Heap:: deleteNodeFromHeap(vector<item>& items, int n,int idx,bool (*comp)(const item&, const item&),bool ascending){
+void Heap::deleteNodeFromHeap(vector<item>& items, int n,int idx,bool (*comp)(const item&, const item&),bool ascending){
     if(idx>=n){
         cout<<"out of range, please enter another index"<<endl;
         return;
