@@ -88,7 +88,6 @@ void printVectorItems(const vector<item>& items) {
     }
 }
 
-
 class Heap {
 public:
     void Minheapify(vector<item>& items, int i, int n, bool (*comp)(const item&, const item&));
@@ -179,9 +178,8 @@ void Heap::heapSort(vector<item>& items, int n, bool (*comp)(const item&, const 
     }
 }
 void Heap::insertNodeToHeap(vector<item>& items, int n, const item& newnode, bool (*comp)(const item&, const item&), bool ascending) {
-    n += 1;
-    items[n - 1] = newnode;
-    heapSort(items, n, comp, ascending);
+    items.push_back(newnode);
+    heapSort(items, items.size(), comp, ascending);
 }
 void Heap::deleteNodeFromHeap(vector<item>& items, int n, int idx, bool (*comp)(const item&, const item&), bool ascending) {
     if (idx >= n) {
@@ -234,10 +232,10 @@ private:
 
     }
 
-    Node* rightRotate(Node* y) { // y is the root                     
+    Node* rightRotate(Node* y) { // y is the root
         Node* x = y->left;  // x is left to y
         Node* B = x->right; // beta(B) is the rigth sub tree of node x
-        // gama which is the left subtree to node x will be the same 
+        // gama which is the left subtree to node x will be the same
         // alpha which is the right subtree to node y will be same as it greater than x and y
 
          /*      y                    x
@@ -421,7 +419,7 @@ private:
 
         return root;
     }
-    // to find the node with minimum value 
+    // to find the node with minimum value
     Node* minValueNode(Node* node) {
         Node* current = node;
 
@@ -600,10 +598,10 @@ private:
 
     }
 
-    Node2* rightRotate(Node2* y) { // y is the root                     
+    Node2* rightRotate(Node2* y) { // y is the root
         Node2* x = y->left;  // x is left to y
         Node2* B = x->right; // beta(B) is the rigth sub tree of node x
-        // gama which is the left subtree to node x will be the same 
+        // gama which is the left subtree to node x will be the same
         // alpha which is the right subtree to node y will be same as it greater than x and y
 
          /*      y                    x
@@ -787,7 +785,7 @@ private:
 
         return root;
     }
-    // to find the node with minimum value 
+    // to find the node with minimum value
     Node2* minValueNode(Node2* node) {
         Node2* current = node;
 
@@ -826,14 +824,20 @@ public:
 
 };
 
+bool ascendingORdescending(int &input){
+    if (input == 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
 /**********************************************************************************************************/
 int main() {
     vector<item> items;
     readItems("try.txt", items);
-    int choice = -1, input;
-    bool ascending = true;
-    Heap heap;
+
     vector<item> AVL1items;
     readItems("try.txt", AVL1items);
     AVLTree avlTree;
@@ -841,13 +845,13 @@ int main() {
         avlTree.insert(it);
     }
     vector<item2> AVL2items2;
-    readItems2("try.txt", AVL2items2); 
-    AVLTree2 avlTree2; 
+    readItems2("try.txt", AVL2items2);
+    AVLTree2 avlTree2;
     for (const auto& it : AVL2items2) {
         avlTree2.insert(it);
     }
     int treeType;
-    cout << "Welcome to the Online Supermarket Ordering System\n";
+    cout << "Welcome to the online Supermarket Ordering System\n";
     cout << "Please choose the data structure you want to use:\n";
     cout << "1. Binary Search Tree (BST)\n";
     cout << "2. Heaps\n";
@@ -859,6 +863,9 @@ int main() {
         //BST
     }
     else if (treeType == 2) {
+        int choice = -1,input;
+        bool ascending = true;
+        Heap heap;
         while (choice != 0) {
             cout << "Please enter what you would like to choose:\n"
                 << "1 - Print items before sorting\n"
@@ -879,13 +886,7 @@ int main() {
             case 2: {
                 cout << "please enter if you want sorting ascending(1) or descending(2)\n";
                 cin >> input;
-                if (input == 1) {
-                    ascending = true;
-                }
-                else {
-                    ascending = false;
-                }
-                heap.heapSort(items, items.size(), compareByName, ascending);
+                heap.heapSort(items, items.size(), compareByName, ascendingORdescending(input));
                 cout << "Sorted by name:\n";
                 printVectorItems(items);
                 cout << endl;
@@ -894,13 +895,7 @@ int main() {
             case 3: {
                 cout << "please enter if you want sorting ascending(1) or descending(2)\n";
                 cin >> input;
-                if (input == 1) {
-                    ascending = true;
-                }
-                else {
-                    ascending = false;
-                }
-                heap.heapSort(items, items.size(), compareByPrice, ascending);
+                heap.heapSort(items, items.size(), compareByPrice, ascendingORdescending(input));
                 cout << "Sorted by price:\n";
                 printVectorItems(items);
                 cout << endl;
@@ -909,13 +904,7 @@ int main() {
             case 4: {
                 cout << "please enter if you want sorting ascending(1) or descending(2)\n";
                 cin >> input;
-                if (input == 1) {
-                    ascending = true;
-                }
-                else {
-                    ascending = false;
-                }
-                heap.heapSort(items, items.size(), compareByCategory, ascending);
+                heap.heapSort(items, items.size(), compareByCategory, ascendingORdescending(input));
                 cout << "Sorted by category:\n";
                 printVectorItems(items);
                 cout << endl;
@@ -927,33 +916,51 @@ int main() {
                 string category, name;
                 cin >> price >> name >> category;
                 item i = { price,name,category };
+                cout << "please enter whether to sort by price or name or category\n"
+                <<"if by price type: 1\n"
+                <<"if by name type: 2\n"
+                <<"if by category type: 3\n";
+                bool (*comp)(const item&, const item&);
+                cin>>input;
+                if(input==1){
+                    comp=compareByPrice;
+                }else if(input==2){
+                    comp=compareByName;
+                }else if(input==3) {
+                    comp=compareByCategory;
+                }else{
+                    cout<<"invalid input\n";
+                }
                 cout << "please enter if you want sorting ascending(1) or descending(2)\n";
                 cin >> input;
-                if (input == 1) {
-                    ascending = true;
-                }
-                else {
-                    ascending = false;
-                }
-                heap.insertNodeToHeap(items, items.size(), i, compareByPrice, ascending);
+                heap.insertNodeToHeap(items, items.size(), i, comp, ascendingORdescending(input));
                 cout << "Sorted by price after inserting a new node:\n";
                 printVectorItems(items);
                 cout << "items size after insertion:" << items.size() << endl;
                 break;
             }
             case 6: {
-                int index;
+                int index,input2;
                 cout << "please enter the index of the item you want to delete: \n";
                 cin >> index;
+                cout << "please enter whether to sort by price or name or category\n"
+                <<"if by price type: 1\n"
+                <<"if by name type: 2\n"
+                <<"if by category type: 3\n";
+                bool (*comp)(const item&, const item&);
+                cin>>input2;
+                if(input2==1){
+                    comp=compareByPrice;
+                }else if(input2==2){
+                    comp=compareByName;
+                }else if(input2==3) {
+                    comp=compareByCategory;
+                }else{
+                    cout<<"invalid input\n";
+                }
                 cout << "please enter if you want sorting ascending(1) or descending(2)\n";
                 cin >> input;
-                if (input == 1) {
-                    ascending = true;
-                }
-                else {
-                    ascending = false;
-                }
-                heap.deleteNodeFromHeap(items, items.size(), index, compareByPrice, ascending);
+                heap.deleteNodeFromHeap(items, items.size(), index, comp, ascendingORdescending(input));
                 printVectorItems(items);
                 cout << "items size after deletion:" << items.size() << endl;
                 break;
