@@ -292,7 +292,7 @@ private:
         else
             return node;
 
-        node->height = 1 + std::max(height(node->left), height(node->right));
+        node->height = 1 + max(height(node->left), height(node->right));
 
         int balanceFactor = getBalanceFactor(node);
         if (balanceFactor > 1) {
@@ -650,7 +650,7 @@ private:
 
     Node2* insert(Node2* node, item2 itemData) {
         if (!node) return new Node2(itemData);
-
+           //search for place to insert recursive
         if (itemData < node->data)
             node->left = insert(node->left, itemData);
         else if (node->data < itemData)
@@ -658,7 +658,7 @@ private:
         else
             return node;
 
-        node->height = 1 + std::max(height(node->left), height(node->right));
+        node->height = 1 + max(height(node->left), height(node->right));
 
         int balanceFactor = getBalanceFactor(node);
         if (balanceFactor > 1) {
