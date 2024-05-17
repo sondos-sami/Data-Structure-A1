@@ -1199,7 +1199,7 @@ int main() {
     }
 
     else if (treeType == 3){
-        int n = 0;
+        int n = -1;
         do {
             displayAVLMenu();
             cin >> n;
