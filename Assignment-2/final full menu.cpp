@@ -1072,10 +1072,19 @@ int main() {
                 item i = { price,name,category };
                 bstByName.AddItemByName(i);
                 bstByPrice.AddItemByPrice(i);
-                cout << "\nItems sorted by name (ascending) after insertion:" << endl;
-                bstByName.DisplayNameAsc();
-                cout << "\nItems sorted by price (ascending) after insertion:" << endl;
-                bstByPrice.DisplayPriceAsc();
+                cout << "please enter if you want sorting ascending(1) or descending(2)\n";
+                cin >> input;
+                if(ascendingORdescending(input)){
+                    cout << "\nItems sorted by name (ascending) after insertion:" << endl;
+                    bstByName.DisplayNameAsc();
+                    cout << "\nItems sorted by price (ascending) after insertion:" << endl;
+                    bstByPrice.DisplayPriceAsc();
+                }else{
+                    cout << "\nItems sorted by name (descending) after insertion:" << endl;
+                    bstByName.DisplayNameDesc();
+                    cout << "\nItems sorted by price (descending) after insertion:" << endl;
+                    bstByPrice.DisplayPriceDesc();
+                }
             }
             else if(choice==5){
                 cout<<"please enter the item contents you want to delete in order of price, name, category: \n";
@@ -1085,10 +1094,19 @@ int main() {
                 item itemToRemove = { price,name,category };
                 bstByName.RemoveItemByName(itemToRemove);
                 bstByPrice.RemoveItemByPrice(itemToRemove);
-                cout << "\nItems sorted by name (ascending) after deletion:" << endl;
-                bstByName.DisplayNameAsc();
-                cout << "\nItems sorted by price (ascending) after deletion:" << endl;
-                bstByPrice.DisplayPriceAsc();
+                cout << "please enter if you want sorting ascending(1) or descending(2)\n";
+                cin >> input;
+                if(ascendingORdescending(input)){
+                    cout << "\nItems sorted by name (ascending) after insertion:" << endl;
+                    bstByName.DisplayNameAsc();
+                    cout << "\nItems sorted by price (ascending) after insertion:" << endl;
+                    bstByPrice.DisplayPriceAsc();
+                }else{
+                    cout << "\nItems sorted by name (descending) after insertion:" << endl;
+                    bstByName.DisplayNameDesc();
+                    cout << "\nItems sorted by price (descending) after insertion:" << endl;
+                    bstByPrice.DisplayPriceDesc();
+                }
             }
             else if(choice==0){
                 cout << "Exit...\n";
@@ -1104,9 +1122,8 @@ int main() {
                 << "1 - Print items before sorting\n"
                 << "2 - Sort items by name\n"
                 << "3 - Sort items by price\n"
-                << "4 - Sort items by category\n"
-                << "5 - Insert a new item\n"
-                << "6 - Delete an item\n"
+                << "4 - Insert a new item\n"
+                << "5 - Delete an item\n"
                 << "0 - Exit\n";
 
             cin >> choice;
@@ -1132,31 +1149,20 @@ int main() {
                 cout<<endl;
             }
             else if(choice==4){
-                cout<<"please enter if you want sorting ascending(1) or descending(2)\n";
-                cin>>input;
-                heap.heapSort(items, items.size(), compareByCategory, ascendingORdescending(input));
-                cout<<"Sorted by category:\n";
-                printVectorItems(items);
-                cout<<endl;
-            }
-            else if(choice==5){
                 cout<<"please enter the item contents you want to insert in order of price, name, category: \n";
                 int price;
                 string category, name;
                 cin>>price>>name>>category;
                 item i={price,name,category};
-                cout<<"please enter whether to sort by price or name or category\n"
+                cout<<"please enter whether to sort by price or name\n"
                 <<"if by price type: 1\n"
-                <<"if by name type: 2\n"
-                <<"if by category type: 3\n";
+                <<"if by name type: 2\n";
                 bool (*comp)(const item&, const item&);
                 cin>>input;
                 if(input==1){
                     comp=compareByPrice;
                 }else if(input==2){
                     comp=compareByName;
-                }else if(input==3) {
-                    comp=compareByCategory;
                 }else{
                     cout<<"invalid input\n";
                 }
@@ -1171,18 +1177,15 @@ int main() {
                 int index,input2;
                 cout<<"please enter the index of the item you want to delete: \n";
                 cin>>index;
-                cout<<"please enter whether to sort by price or name or category\n"
+                cout<<"please enter whether to sort by price or name\n"
                 <<"if by price type: 1\n"
-                <<"if by name type: 2\n"
-                <<"if by category type: 3\n";
+                <<"if by name type: 2\n";
                 bool (*comp)(const item&, const item&);
                 cin>>input2;
                 if(input2==1){
                     comp=compareByPrice;
                 }else if(input2==2){
                     comp=compareByName;
-                }else if(input2==3) {
-                    comp=compareByCategory;
                 }else{
                     cout<<"invalid input\n";
                 }
